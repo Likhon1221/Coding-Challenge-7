@@ -63,6 +63,7 @@ let totalSalary = 0;
 
 for (let i = 0; i < department.employees.length; i++) {
     totalSalary += department.employees[i].salary;
+
     if (department.employees[i].subordinates.length > 0) {
       totalSalary += calculateDepartmentSalary({
         employees: department.employees[i].subordinates
@@ -71,7 +72,18 @@ for (let i = 0; i < department.employees.length; i++) {
   }
 
   return totalSalary;
-};
-console.log(calculateDepartmentSalary(company.departments[1]));
+}; // will show the salary of each department
+console.log("Total Salary of the Department is", calculateDepartmentSalary(company.departments[0]));
 
-        
+// Task 3. Create a Function to Calculate the Total Salary for All Departments
+
+function calculateCompanySalary(company) {
+    let totalCompanySalary = 0;
+  
+    for (let i = 0; i < company.departments.length; i++) {
+      totalCompanySalary += calculateDepartmentSalary(company.departments[i]);
+    }
+  
+    return totalCompanySalary;
+  }; // will show the salary of the whole company
+  console.log("Total Salary of the Company is", calculateCompanySalary(company));
